@@ -2,10 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="users.UsersDAO" %>
 <%@ page import="java.io.PrintWriter" %>
-<% request.setCharacterEncoding("UTF-8"); %>
+<%	request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="users" class="users.Users" scope="page"/>
 <jsp:setProperty name="users" property="userID" />
 <jsp:setProperty name="users" property="userPassword" />
+<jsp:setProperty name="users" property="userName" />
+<jsp:setProperty name="users" property="userNick" />
+<jsp:setProperty name="users" property="userNumber1" />
+<jsp:setProperty name="users" property="userNumber2" />
+<jsp:setProperty name="users" property="userNumber3" />
+<jsp:setProperty name="users" property="userEmail" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,30 +32,18 @@
 			script.println("</script>");
 		}
 		UsersDAO usersDAO = new UsersDAO();
-		int result= usersDAO.login(users.getUserID(), users.getUserPassword());
-		if(result == 1){
+		int result= usersDAO.join(users);
+		if(result == -1){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('존재하는 아이디가 있습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+		} else {
 			session.setAttribute("userID", users.getUserID());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href = 'main.jsp'");
-			script.println("</script>");
-		} else if(result == 0){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('비밀번호가 틀립니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-		} else if(result == -1){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('존재하지않는 아이디입니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-		} else if(result == -2){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('데이터베이스 오류가 발생하였습니다.')");
-			script.println("history.back()");
 			script.println("</script>");
 		}
 	%>

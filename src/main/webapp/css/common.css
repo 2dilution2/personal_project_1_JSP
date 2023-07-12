@@ -114,6 +114,11 @@ body {
     font-weight: 300;
 }
 
+#long,
+#same {
+	font-size: 14px;
+}
+
 .sort {
     font-size: 15px;
     font-weight: 200;
@@ -160,6 +165,8 @@ body {
     font-size: 25px;
     font-weight: 200;
 }
+
+
 
 /* 헤더 */
 header {
@@ -610,9 +617,8 @@ footer {
 }
 
 #member_id,
-#member_pw,
-#member_pw_check,
 #member_name,
+#member_nick,
 #member_phone_mid,
 #member_phone_end,
 #member_email {
@@ -621,21 +627,35 @@ footer {
     border: 0px;
     height: 50px;
     padding: 0px;
+    
+}
+
+#member_pw,
+#member_pw_check{
+	margin-bottom: 5px;
+	background-color: #F2F2F2;
+    border: 0px;
+    height: 50px;
+    padding: 0px;
+}
+
+.join_pw,
+.join_pw_ck {
+	height: 84px;
 }
 
 #member_pw,
 #member_pw_check,
-#member_name {
+#member_name,
+#member_nick,
+#member_email {
     width: 575px;
 }
 
 #member_phone_mid,
 #member_phone_end {
     width: 200px;
-}
-
-#member_email {
-    width: 280px;
+    text-align: center;
 }
 
 .join_id td input:nth-of-type(2) {
@@ -655,17 +675,9 @@ footer {
     padding: 0px;
 }
 
-#member_email_domain {
-    width: 250px;
-    text-align: center;
-    border: 0px;
-    background-color: #F2F2F2;
-    height: 50px;
-    padding: 0px;
-}
-
 .agree {
-    margin: 48px auto 0;
+    margin: 30px auto 0;
+    margin-top: 30px;
 }
 
 .join_btn {
@@ -676,6 +688,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 0px;
 }
 
 .social_join ul {
@@ -906,16 +919,12 @@ section.product {
     width: 860px;
     margin: 0;
     margin-bottom: 30px;
-}
-
-.prod_QnA_tab_list,
-.prod_review_list {
     position: relative;
     padding: 0;
     border-bottom: 2px solid #000000;
 }
 
-.prod_QnA_tab_list:before,
+/*.prod_QnA_tab_list:before,
 .prod_review_list:before {
     content: "";
     position: absolute;
@@ -926,7 +935,7 @@ section.product {
     height: 1px;
     background-color: #dddddd;
     margin-bottom: -1px;
-}
+}*/
 
 .prod_shipping_img {
     display: flex;
@@ -934,7 +943,7 @@ section.product {
     justify-content: center;
 }
 
-.active {
+.prod_tab .active {
     font-weight: 600;
     border-top: 2px solid #000;
     border-left: 2px solid #000;

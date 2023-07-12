@@ -12,11 +12,11 @@ public class UsersDAO {
 	
 	public UsersDAO() {
 		try {
-			String bdURL ="jdbc:mysql://loclahost:3306/JSP_1";
+			String dbURL ="jdbc:mysql://localhost:3306/jsp_1";
 			String dbID = "root";
 			String dbPassword ="1234";
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(bdURL, dbID, dbPassword);
+			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -29,10 +29,10 @@ public class UsersDAO {
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				if (rs.getString(1).equals(userPassword)) {
-					return 1;
-				}
-				else {
+				String dbPassword = rs.getString(1); // DB에서 조회한 비밀번호
+			    if (dbPassword.equals(userPassword)) {
+			        return 1;
+				} else {
 					return 0;
 				}
 			}
@@ -41,5 +41,22 @@ public class UsersDAO {
 			e.printStackTrace();
 		}
 		return -2;
+	}
+	
+	public int join(Users users) {
+		String SQL = "INSERT INTO users VALUES (?,?,?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, users.getUserID());
+			pstmt.setString(2, users.getUserPassword());
+			pstmt.setString(3, users.getUserName());
+			pstmt.setString(4, users.getUserNick());
+			pstmt.setString(5, users.getUserNumber1() + users.getUserNumber2() + users.getUserNumber3());
+			pstmt.setString(6, users.getUserEmail());
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }

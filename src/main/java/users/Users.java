@@ -5,7 +5,10 @@ public class Users {
 	private String userID;
 	private String userPassword;
 	private String userName;
-	private String userNumber;
+	private String userNick;
+	private String userNumber1;
+	private String userNumber2;
+	private String userNumber3;
 	private String userEmail;
 	
 	public String getUserID() {
@@ -26,12 +29,30 @@ public class Users {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserNumber() {
-		return userNumber;
+	public String getUserNick() {
+		return userNick;
 	}
-	public void setUserNumber(String userNumber) {
-		this.userNumber = userNumber;
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
+	public String getUserNumber1() {
+		return userNumber1;
+	}
+	public void setUserNumber1(String userNumber1) {
+		this.userNumber1 = userNumber1;
+	}
+	public String getUserNumber2() {
+		return userNumber2;
+	}
+	public void setUserNumber2(String userNumber2) {
+		this.userNumber2 = userNumber2;
+	}
+	public String getUserNumber3() {
+        return userNumber3;
+    }
+	public void setUserNumber3(String userNumber3) {
+        this.userNumber3 = userNumber3;
+    }
 	public String getUserEmail() {
 		return userEmail;
 	}

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 <body>
 	<header>
         <div class="container_h">
-            <h1><a href="index.jsp">Acoustic</a></h1>
+            <h1><a href="main.jsp">Acoustic</a></h1>
             <nav>
                 <ul class="header_list">
                     <li class="hd_member_tt">
@@ -50,7 +50,7 @@
 	                    <span>PW</span>
 	                </td>
 	                <td>
-	                    <input class="login_member_pw" type="password" name="userPW" maxlength="20">
+	                    <input class="login_member_pw" type="password" name="userPassword" maxlength="20">
 	                </td>
 	            </tr>
 	        </table>
