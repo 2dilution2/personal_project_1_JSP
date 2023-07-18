@@ -55,6 +55,7 @@
 	            </tr>
 	        </table>
 	        <div>
+	        	<input type="hidden" name="loginFrom" value="login.jsp">
 	            <input type="submit" class="login_btn" value="Log in">
 	        </div>
 	        <ul class="not_login">

@@ -1,0 +1,148 @@
+@import url(normalize.css);
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Lexend&family=Lexend+Deca:wght@300&family=Lexend+Exa&family=Lexend+Giga:wght@200;300;400;600;700&family=Lexend+Mega:wght@600&display=swap');
+
+.login_input_tt {
+    font-size: 30px;
+}
+
+.login_btn {
+    font-size: 40px;
+}
+
+.not_login {
+    font-size: 20px;
+    font-family: Lexend;
+    font-weight: 400;
+}
+
+.login_btn {
+    font-size: 40px;
+    font-family: Lexend Exa;
+    font-weight: 400;
+}
+
+.agree {
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+}
+
+
+body {
+    font-size: 40px;
+    font-family: 'Lexend Giga', sans-serif;
+    height: 100%;
+}
+
+section{
+	font-size: 25px;
+}
+
+.login_input {
+    padding-top: 30px;
+    text-align: center;
+    width: 690px;
+    align-items: center;
+    margin: auto;
+}
+
+.login_input_tt {
+    width: 690px;
+    align-items: center;
+}
+
+.login_input_tt tr td input[type="text"],
+.login_input_tt tr td input[type="password"] {
+    width: 560px;
+    height: 50px;
+    background-color: #F2F2F2;
+    border: 0px;
+    margin-top: 34px;
+}
+
+.login_btn {
+    width: 360px;
+    height: 65px;
+    background-color: #D9D9D9;
+    margin: 75px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not_login {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.not_login li,
+.not_login li a {
+    color: #979797;
+}
+
+.social_login ul {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.social_login ul li {
+    padding-left: 90px;
+}
+
+.social_login ul li:first-child {
+    padding-left: 0;
+}
+
+.bar-pop {
+	width: 860px;
+    text-align: center;
+    margin: 0 auto;
+    border-bottom: 1px solid #505050;
+	padding-top: 25px;
+}
+
+.table_striped {
+    margin: 0 auto;
+    width: 95%;
+	font-size: 20px;
+	table-layout: fixed;
+	border-collapse: collapse;
+	margin-top: 60px;
+}
+
+.table_striped td {
+	text-align: center;
+	padding: 10px;
+	border: 0px;
+}
+
+.section {
+	position: relative;
+	height: 435px;
+	padding-top: 50px;
+	background-color: #f4f4f4;
+}
+
+.prod_review_write {
+	position: absolute;
+	top: 85px;
+	right: 20px;
+}
+
+.prod_review_write span,
+.prod_review_write select {
+	font-size: 20px;
+}
+
+.review {
+	width: 100%;
+}
+
+.review-content {
+	height: 300px;
+}

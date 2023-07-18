@@ -15,7 +15,8 @@ public class UsersDAO {
 			String dbURL ="jdbc:mysql://localhost:3306/jsp_1";
 			String dbID = "root";
 			String dbPassword ="1234";
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// No need to explicitly load the driver class
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,6 +43,22 @@ public class UsersDAO {
 		}
 		return -2;
 	}
+	
+	public String getUserNick(String userID) {
+	    String SQL = "SELECT userNick FROM users WHERE userID = ?";
+	    try {
+	        pstmt = conn.prepareStatement(SQL);
+	        pstmt.setString(1, userID);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            return rs.getString("userNick");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
 	
 	public int join(Users users) {
 		String SQL = "INSERT INTO users VALUES (?,?,?,?,?,?)";
