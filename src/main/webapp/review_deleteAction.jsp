@@ -4,10 +4,6 @@
 <%@ page import="review.Review" %>
 <%@ page import="review.ReviewDAO" %>
 <%	request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="review" class="review.Review" scope="page"/>
-<jsp:setProperty name="review" property="reviewTitle" />
-<jsp:setProperty name="review" property="reviewContent" />
-<jsp:setProperty name="review" property="reviewRating" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +22,28 @@
 			script.println("alert('데이터베이스 오류.')");
 			script.println("history.back()");
 			script.println("</script>");
+		} 
+		int reviewID = 0;
+		if(request.getParameter("reviewID") != null){
+			reviewID = Integer.parseInt(request.getParameter("reviewID"));
+		}	
+		if(reviewID == 0){
+			PrintWriter script = response.getWriter();
+	        script.println("<script>");
+	        script.println("alert('유효하지 않은 글입니다.')");
+	        script.println("window.close();");
+	        script.println("</script>");
+		}
+		Review review = new ReviewDAO().getReview(reviewID);
+		if(!userID.equals(review.getUserNick())){
+			PrintWriter script = response.getWriter();
+	        script.println("<script>");
+	        script.println("alert('권한이 없습니다.')");
+	        script.println("window.close();");
+	        script.println("</script>");
 		} else {
 			ReviewDAO reviewDAO = new ReviewDAO();
-			 int result = reviewDAO.write(review.getReviewTitle(), userID, review.getReviewRating(), review.getReviewContent());
+			int result = reviewDAO.delete(Integer.parseInt(request.getParameter("reviewID")));
 			if(result == -1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

@@ -25,6 +25,13 @@
 	}
 	</script>
 <body class="pop">
+	<%
+	String userID = null;
+	String userNick = null;
+	if(session.getAttribute("userID") != null){
+		userID = (String) session.getAttribute("userID");
+	}	
+	%>
 	<div class="bar-pop">
 		<h2 class="head_tt">Review</h2>
 	</div>

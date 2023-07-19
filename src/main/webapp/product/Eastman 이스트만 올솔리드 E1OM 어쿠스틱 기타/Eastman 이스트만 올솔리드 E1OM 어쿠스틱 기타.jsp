@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					data-target=".prod_description">상품정보</td>
 				<td class="prod_review_tab" data-target=".prod_review">구매후기</td>
 				<td class="prod_shipping_tab" data-target=".prod_shipping">배송안내</td>
-				<td class="prod_QnA_tab" data-target=".prod_QnA">Q&A</td>
+				<td class="prod_QnA_tab" data-target=".prod_QnA">Q&amp;A</td>
 				<td></td>
 			</tr>
 		</table>
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				<td class="prod_description_tab" data-target=".prod_description">상품정보</td>
 				<td class="prod_review_tab active" data-target=".prod_review">구매후기</td>
 				<td class="prod_shipping_tab" data-target=".prod_shipping">배송안내</td>
-				<td class="prod_QnA_tab" data-target=".prod_QnA">Q&A</td>
+				<td class="prod_QnA_tab" data-target=".prod_QnA">Q&amp;A</td>
 				<td></td>
 			</tr>
 		</table>
@@ -203,37 +203,55 @@ document.addEventListener("DOMContentLoaded", () => {
 			    </script>
 			</div>
 			<table class="table table_striped">
-		<thead>
-			<tr class="prod_review_list">
-				<th>번호</th>
-				<th>별점</th>
-				<th>제목</th>
-				<th>닉네임</th>
-				<th>작성일</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-				int pageNumber = 1;
-				ReviewDAO reviewDAO = new ReviewDAO();
-				ArrayList<Review> list = reviewDAO.getList(pageNumber);
-				for(int i = 0 ; i < list.size() ; i++) {
-			%>
+				<thead>
+					<tr class="prod_review_list">
+						<th>번호</th>
+						<th>별점</th>
+						<th>제목</th>
+						<th>닉네임</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						int pageNumber = 1;
+						if (request.getParameter("pageNumber") != null) {
+							pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+						}
+						ReviewDAO reviewDAO = new ReviewDAO();
+						ArrayList<Review> list = reviewDAO.getList(pageNumber);
+						for(int i = 0 ; i < list.size() ; i++) {
+					%>
+					
+					<tr>
+						<td><%= list.get(i).getReviewID() %></td>
+						<td><%= list.get(i).getReviewRating() %></td>
+						<td><a href="#" onclick="window.open('../../review_view.jsp?reviewID=<%= list.get(i).getReviewID() %>', 'ViewReview', 'width=860px, height=600px'); return false;"><%= list.get(i).getReviewTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("/n","<br>;") %></a></td>
+						<td><%= list.get(i).getUserNick() %></td>
+						<td><%= list.get(i).getReviewDate() %></td>
+					</tr>
+					
+					<%
+						}
+					%>
+				</tbody>
+			</table>
+			<div class="tableBtn">
+				<%
+					if (pageNumber != 1) {
+				%>
+				<a href="Eastman 이스트만 올솔리드 E1OM 어쿠스틱 기타.jsp?pageNumber=<%=pageNumber - 1 %>">prev</a>
+				<%
+					}
+					if (reviewDAO.nextPage(pageNumber)) {
+				%>
+				<a href="Eastman 이스트만 올솔리드 E1OM 어쿠스틱 기타.jsp?pageNumber=<%=pageNumber + 1 %>">next</a>
+				<%
+					}
+				%>
+			</div>
 			
-			<tr>
-				<td><%= list.get(i).getReviewID() %></td>
-				<td><%= list.get(i).getReviewRating() %></td>
-				<td><a href="view.jsp?reviewID=<%= list.get(i).getReviewID() %>"><%= list.get(i).getReviewTitle() %></a></td>
-				<td><%= list.get(i).getUserNick() %></td>
-				<td><%= list.get(i).getReviewDate() %></td>
-			</tr>
-			
-			<%
-				}
-			%>
-		</tbody>
-	</table>
-		</div>
+		</div>	
 	</section>
 	<section class="prod_shipping">
 		<table class="prod_tab">
@@ -242,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				<td class="prod_description_tab" data-target=".prod_description">상품정보</td>
 				<td class="prod_review_tab" data-target=".prod_review">구매후기</td>
 				<td class="prod_shipping_tab active" data-target=".prod_shipping">배송안내</td>
-				<td class="prod_QnA_tab" data-target=".prod_QnA">Q&A</td>
+				<td class="prod_QnA_tab" data-target=".prod_QnA">Q&amp;A</td>
 				<td></td>
 			</tr>
 		</table>
@@ -258,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				<td class="prod_description_tab" data-target=".prod_description">상품정보</td>
 				<td class="prod_review_tab" data-target=".prod_review">구매후기</td>
 				<td class="prod_shipping_tab" data-target=".prod_shipping">배송안내</td>
-				<td class="prod_QnA_tab active" data-target=".prod_QnA">Q&A</td>
+				<td class="prod_QnA_tab active" data-target=".prod_QnA">Q&amp;A</td>
 				<td></td>
 			</tr>
 		</table>

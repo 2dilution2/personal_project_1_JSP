@@ -68,11 +68,11 @@ public class ReviewDAO {
 	}
 	
 	public ArrayList<Review> getList(int pageNumber){
-		String SQL = "SELECT * FROM review ORDER BY reviewID DESC LIMIT ?, 10";
+		String SQL = "SELECT * FROM review ORDER BY reviewID DESC LIMIT ?, 6";
 		ArrayList<Review> list = new ArrayList<Review>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, (pageNumber - 1) * 10);
+			pstmt.setInt(1, (pageNumber - 1) * 6);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Review review = new Review();
@@ -92,10 +92,10 @@ public class ReviewDAO {
 	}
 	
 	public boolean nextPage(int pageNumber) {
-		String SQL = "SELECT * FROM review ORDER BY reviewID DESC LIMIT ?, 10";
+		String SQL = "SELECT * FROM review ORDER BY reviewID DESC LIMIT ?, 6";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, (pageNumber - 1) * 10);
+			pstmt.setInt(1, (pageNumber - 1) * 6);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				return true;
@@ -104,5 +104,54 @@ public class ReviewDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public Review getReview(int reviewID) {
+		String SQL = "SELECT * FROM review WHERE reviewID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, reviewID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Review review = new Review();
+				review.setReviewID(rs.getInt("reviewID"));
+				review.setReviewRating(rs.getInt("reviewRating"));
+				review.setReviewTitle(rs.getString("reviewTitle"));
+				review.setUserNick(rs.getString("userNick"));
+				review.setReviewDate(rs.getString("reviewDate"));
+				review.setReviewContent(rs.getString("reviewContent"));
+				review.setReviewAvailable(rs.getInt("reviewAvailable"));
+				return review;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int update(int reviewID, String reviewTitle, String reviewContent) {
+    String SQL = "UPDATE review SET reviewTitle = ?, reviewContent = ? WHERE reviewID = ?";
+    try {
+        PreparedStatement pstmt = conn.prepareStatement(SQL);
+        pstmt.setString(1, reviewTitle);
+        pstmt.setString(2, reviewContent);
+        pstmt.setInt(3, reviewID);
+        return pstmt.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return -1;
+	}
+	
+	public int delete(int reviewID) {
+		String SQL = "UPDATE review SET reviewAvailable = 0 WHERE reviewID = ?";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setInt(1, reviewID);
+	        return pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return -1;
 	}
 }
